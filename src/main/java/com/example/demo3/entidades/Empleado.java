@@ -10,6 +10,7 @@ package com.example.demo3.entidades;
  */
 public class Empleado {
     
+    private long id;
     private String nombre;
     private String apellido;
     private int Edad;
@@ -17,10 +18,19 @@ public class Empleado {
     public Empleado() {
     }
 
-    public Empleado(String nombre, String apellido, int Edad) {
+    public Empleado(long id, String nombre, String apellido, int Edad) {
+        this.id = id;
         this.nombre = nombre;
         this.apellido = apellido;
         this.Edad = Edad;
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
     }
 
     public String getNombre() {

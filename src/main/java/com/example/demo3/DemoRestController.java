@@ -8,6 +8,7 @@ import com.example.demo3.entidades.Empleado;
 import java.util.ArrayList;
 import java.util.List;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
@@ -19,9 +20,9 @@ public class DemoRestController {
 
     private static final List<Empleado> empleados = new ArrayList<>(); 
     static{
-            empleados.add(new Empleado( "Tony", "Medina", 35 ));
-            empleados.add(new Empleado( "Dylan", "Piña",5 ));
-            empleados.add(new Empleado( "Angelberth", "Noguera", 32 ));
+            empleados.add(new Empleado( 1, "Tony", "Medina", 35 ));
+            empleados.add(new Empleado(2, "Dylan", "Piña",5 ));
+            empleados.add(new Empleado(3, "Angelberth", "Noguera", 32 ));
 }
     
     @GetMapping("/")
@@ -31,5 +32,9 @@ public class DemoRestController {
     @GetMapping("/empleados")
     public List<Empleado>  empleados(){
         return empleados;
+    }
+    @GetMapping("/empleados/{id}")
+    public Empleado getIdEmpleado(@PathVariable Long id){
+    return empleados.stream().filter(empleado -> empleado.getId() == id).findFirst().orElse(null);
     }
 }

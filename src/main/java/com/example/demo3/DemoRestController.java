@@ -7,6 +7,7 @@ package com.example.demo3;
 import com.example.demo3.entidades.Empleado;
 import java.util.ArrayList;
 import java.util.List;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -66,4 +67,12 @@ public class DemoRestController {
 
         return elEmpleado;
     }
+
+    @DeleteMapping("/empleados/{idEmpleado}")
+    public String deleteEmpleado(@PathVariable int idEmpleado) {
+        this.empleados.removeIf(s  ->  s.getId() == idEmpleado);
+        return "Empleado con id: " + idEmpleado + " eliminado satisfactoriamente";
+
+    }
+
 }
